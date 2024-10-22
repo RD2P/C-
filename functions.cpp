@@ -10,6 +10,7 @@ void greet(string name){
   cout << "Hello " << name << endl;
 }
 
+// overloading
 void greet(string name, string lastname){
   cout << "Hello " << name << " " << lastname << endl;
 }
