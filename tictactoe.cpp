@@ -30,9 +30,9 @@ void print_board(char board[3][3]){
   }
 }
 
-int get_play(){
+int get_play(char player){
   int play;
-  cout << "What's your play? (1-9): ";
+  cout << "Player " << player <<  ", what's your play? (1-9): ";
   cin >> play;
   return play;
 }
@@ -48,15 +48,28 @@ int main(){
     {' ', ' ', ' '},
     {' ', ' ', ' '},
   };
-  print_numbered_board();
-  print_board(board);
-  int current_play = get_play();
-  cout << current_play;
 
-  int row; int col;
-  convert_to_2D(current_play, row, col);
-  board[row][col] = 'X';
-  print_board(board);
+  cout << "Welcome to tic tac toe. To make your play, enter a number 1-9 according to the board below: " << endl;
+  print_numbered_board();
+
+  bool win = false;
+
+  while (win == false){
+
+    int current_play; int row; int col;
+
+    current_play = get_play('1');
+    convert_to_2D(current_play, row, col);
+    board[row][col] = 'X';
+    print_board(board);
+
+    current_play = get_play('2');
+    convert_to_2D(current_play, row, col);
+    board[row][col] = 'O';
+    print_board(board);
+    
+    // win = true;
+  }
 
   return 0;
 }
