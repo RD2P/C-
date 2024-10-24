@@ -51,18 +51,27 @@ bool check_win(char player, char board[3][3]){
     }
     if (play_count == 3) return true;
   }
-  return false;
 
   // check cols
+  for (int c = 0; c < 3; c++){
+    int play_count = 0;
+    for(int r = 0; r < 3; r++){
+      if (board[r][c] == player) play_count++;
+    }
+    if (play_count == 3) return true;
+  }
+
+
 
   // check diagonals
+  return false;
 }
 
 int main(){
   char board[3][3] = {
-    {'x', 'x', 'f'},
-    {'x', 'x', ' '},
-    {'x', 'f', 'x'},
+    {'x', 'x', 'x'},
+    {' ', 'x', 'x'},
+    {'x', ' ', 'x'},
   };
 
   cout << check_win('x', board);
