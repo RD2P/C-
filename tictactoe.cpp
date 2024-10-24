@@ -81,6 +81,10 @@ bool check_win(char player, char board[3][3]){
   return false;
 }
 
+// TODO: guard against overiding plays
+// TODO: abstract away a turn into a function
+// TODO: print numbered board for reference before every turn
+
 int main(){
   char board[3][3] = {
     {' ', ' ', ' '},
