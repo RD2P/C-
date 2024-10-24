@@ -61,16 +61,30 @@ bool check_win(char player, char board[3][3]){
     if (play_count == 3) return true;
   }
 
-
-
   // check diagonals
+  {
+    int play_count = 0;
+    for(int i = 0; i < 3; i++){
+      if(board[i][i] == player) play_count++;
+    }
+    if (play_count == 3) return true;
+  }
+
+  {
+    int play_count = 0;
+    for(int i = 0; i < 3; i++){
+      if(board[i][2-i] == player) play_count++;
+    }
+    if (play_count == 3) return true;
+  }
+
   return false;
 }
 
 int main(){
   char board[3][3] = {
-    {'x', 'x', 'x'},
     {' ', 'x', 'x'},
+    {' ', 'x', ' '},
     {'x', ' ', 'x'},
   };
 
