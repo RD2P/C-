@@ -83,38 +83,36 @@ bool check_win(char player, char board[3][3]){
 
 int main(){
   char board[3][3] = {
-    {' ', 'x', 'x'},
-    {' ', 'x', ' '},
-    {'x', ' ', 'x'},
+    {' ', ' ', ' '},
+    {' ', ' ', ' '},
+    {' ', ' ', ' '},
   };
 
-  cout << check_win('x', board);
+  cout << "Welcome to tic tac toe. To make your play, enter a number 1-9 according to the board below: " << endl;
+  print_numbered_board();
 
-  //cout << "Welcome to tic tac toe. To make your play, enter a number 1-9 according to the board below: " << endl;
-  //print_numbered_board();
+  while (true){
 
-  bool win = false;
+    int current_play; int row; int col;
 
- 
+    current_play = get_play('X');
+    convert_to_2D(current_play, row, col);
+    board[row][col] = 'X';
+    print_board(board);
+    if (check_win('X', board) == true){
+      cout << "Player X wins!" << endl;
+      break;
+    };
 
-  // while (win == false){
-
-  //   int current_play; int row; int col;
-
-  //   current_play = get_play('X');
-  //   convert_to_2D(current_play, row, col);
-  //   board[row][col] = 'X';
-  //   print_board(board);
-
-  //   check_win('X', board);
-
-  //   current_play = get_play('O');
-  //   convert_to_2D(current_play, row, col);
-  //   board[row][col] = 'O';
-  //   print_board(board);
-    
-  //   // win = true;
-  // }
+    current_play = get_play('O');
+    convert_to_2D(current_play, row, col);
+    board[row][col] = 'O';
+    print_board(board);
+    if (check_win('O', board) == true){
+      cout << "Player O wins!" << endl;
+      break;
+    };
+  }
 
   return 0;
 }
