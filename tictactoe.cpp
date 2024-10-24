@@ -42,6 +42,10 @@ void convert_to_2D(int n, int& row, int& col){
   col = (n - 1) % 3;
 }
 
+void check_win(){
+  
+}
+
 int main(){
   char board[3][3] = {
     {' ', ' ', ' '},
