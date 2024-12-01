@@ -1,9 +1,9 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
 void print_numbered_board(){
+  // communicates numbers 1-9 associating with spots on the board
   char board[3][3] = {
     {'1', '2', '3'},
     {'4', '5', '6'},
@@ -31,6 +31,7 @@ void print_board(char board[3][3]){
 }
 
 bool already_played(int plays[9], int play){
+  // check if plays array contains the play
   for (int i = 0; i < 9; i++){
     if (plays[i] != 0 && plays[i] == play) {
       return true;
@@ -40,6 +41,7 @@ bool already_played(int plays[9], int play){
 }
 
 void add_to_plays(int plays[9], int play){
+  // add the play in the first index where the value is zero 
   for (int i = 0; i < 9; i++){
     if (plays[i] == 0){
       plays[i] = play;
@@ -52,7 +54,8 @@ int get_play(int plays[9], char player){
   int play;
   cout << "Player " << player <<  ", what's your play? (1-9): ";
   cin >> play;
-  bool played = already_played(plays, play);
+  bool played = already_played(plays, play); // check if the spot is already taken
+  //check if input is valid
   while ((play < 1 || play > 9) || played == true){
     if (play < 1 || play > 9){
       cout << "Please input a number between 1 and 9." << endl;
@@ -118,7 +121,7 @@ int main(){
     {' ', ' ', ' '},
   };
 
-  int plays[9] = {0};
+  int plays[9] = {0}; // initialized as all zeros, track which plays have been made
 
   cout << "Welcome to tic tac toe. To make your play, enter a number 1-9 according to the board below: " << endl;
   print_numbered_board();
