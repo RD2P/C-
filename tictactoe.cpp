@@ -30,10 +30,40 @@ void print_board(char board[3][3]){
   }
 }
 
-int get_play(char player){
+bool already_played(int plays[9], int play){
+  for (int i = 0; i < 9; i++){
+    if (plays[i] != 0 && plays[i] == play) {
+      return true;
+    }
+  }
+  return false;
+}
+
+void add_to_plays(int plays[9], int play){
+  for (int i = 0; i < 9; i++){
+    if (plays[i] == 0){
+      plays[i] = play;
+      return;
+    }
+  }
+}
+
+int get_play(int plays[9], char player){
   int play;
   cout << "Player " << player <<  ", what's your play? (1-9): ";
   cin >> play;
+  bool played = already_played(plays, play);
+  while ((play < 1 || play > 9) || played == true){
+    if (play < 1 || play > 9){
+      cout << "Please input a number between 1 and 9." << endl;
+    }
+    if (played == true) {
+      cout << "This spot is already taken." << endl;
+    }
+    cin >> play;
+    played = already_played(plays, play);
+  }
+  add_to_plays(plays, play);
   return play;
 }
 
@@ -81,16 +111,14 @@ bool check_win(char player, char board[3][3]){
   return false;
 }
 
-// TODO: guard against overiding plays
-// TODO: abstract away a turn into a function
-// TODO: print numbered board for reference before every turn
-
 int main(){
   char board[3][3] = {
     {' ', ' ', ' '},
     {' ', ' ', ' '},
     {' ', ' ', ' '},
   };
+
+  int plays[9] = {0};
 
   cout << "Welcome to tic tac toe. To make your play, enter a number 1-9 according to the board below: " << endl;
   print_numbered_board();
@@ -99,7 +127,7 @@ int main(){
 
     int current_play; int row; int col;
 
-    current_play = get_play('X');
+    current_play = get_play(plays, 'X');
     convert_to_2D(current_play, row, col);
     board[row][col] = 'X';
     print_board(board);
@@ -108,7 +136,7 @@ int main(){
       break;
     };
 
-    current_play = get_play('O');
+    current_play = get_play(plays, 'O');
     convert_to_2D(current_play, row, col);
     board[row][col] = 'O';
     print_board(board);
